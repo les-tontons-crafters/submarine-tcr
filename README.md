@@ -5,6 +5,8 @@ All credits goes to AOC's team for their incredible work.
 
 The TCR Utility Tool in this repository is Murex's one that can be found [here](https://github.com/murex/TCR).
 
+![Autumn camp](img/autumn-camp-tcr.png)
+
 # Kata
 
 The goal of this kata is to allow people to get familiar with
