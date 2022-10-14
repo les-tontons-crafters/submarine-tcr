@@ -62,34 +62,60 @@ After following these instructions, you would have a horizontal position of `15`
 The goal of the kata is to make all acceptance tests pass following Test-Driven Development and using the TCR Utility
 Tool.
 
-### Important
+### (SUPER) Important
 
 Create a branch of your own so you don't push all your commits on the main branch!
+
+### Tool
+Without going too much in detail, here's a little explanation on how the TCR Utility Tool works.
+
+The command must follow the following format, and be executed from the root directory:
+- .\tcr\\**OS**\tcr.exe -b .\\**language**\ -w .\\**language**\ -l **language**
+
+```shell
+// For Java
+./tcr/MacOs/tcr -b java/ -w java/ -t maven
+.\tcr\Windows\tcr.exe -b .\java\ -w .\java\ -l java -t maven
+
+// For C#
+.\tcr\Windows\tcr.exe -b .\csharp\ -w .\csharp\ -l csharp
+```
+
+From there, the tool will provide a set of options:
+```shell
+[TCR] Available Options:
+[TCR]   D -> Driver role
+[TCR]   N -> Navigator role
+[TCR]   P -> Turn on/off git auto-push
+[TCR]   Q -> Quit
+[TCR]   ? -> List available options
+```
+
+It's pretty simple:
+- When it's your turn to drive, pick the **Driver role** or press **D**. You will be the driver for the next 5 minutes.
+- Otherwise, pick the **Navigator role** or press **N**. You will constantly pull commits and have an up-to-date codebase.
+
+Please, make sure to follow your rotation and have only one driver at a time.
+
+Have fun!
 
 ### Rules
 
 - Follow the Test-Driven Development approach.
-- Use the TCR Utility Tool with the according mode (Driver|Navigator)
-    - Here's the command line to use (in java for MacOs) :
-
-```shell
-./tcr/MacOs/tcr -b java/ -w java/ -t maven
-```
-
 - `ISubmarine` interface cannot be changed.
 - `Submarine` component should have an empty constructor.
 - Handle empty/wrong input so they don't affect the state of the submarine without stopping the process.
 - When an acceptance test pass, change its tag to 'Acceptance'.
 - Apply [SOLID principles](https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html) whenever possible
-- Think about design (not sure all the code should be in the Submarine class, right?).
-    - For example, grouping domain knowledge inside value objects might be a good idea.
+- Think about design like it's production code.
 - Refactor the code like it's production code.
+- It **is** production code, remember?
 
 ### Advices
 
 - Baby-steps. If you think you're going small, think smaller.
 - You should have TCR generating commits often, like every few minutes.
-- If you spend more than 5 minutes on an implementation, discard your changes and start with another approach.
+- If you spend more too much time on an implementation, discard your changes and start with another approach.
 - The submarine's behavior is detailed in the summary.
 - Try to implement [pure functions](https://betterprogramming.pub/what-is-a-pure-function-3b4af9352f6f) for better
   predictability.
