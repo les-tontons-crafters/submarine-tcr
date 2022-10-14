@@ -4,13 +4,17 @@ namespace SubmarineTcrKata.Acceptance.Drivers;
 
 public class SubmarineDriver
 {
-    private readonly Submarine _submarine;
+    private readonly Submarine submarine;
 
-    public SubmarineDriver(Submarine submarine) => _submarine = submarine;
+    public SubmarineDriver(Submarine submarine) => this.submarine = submarine;
 
-    public int GetSubmarineDepth() => _submarine.Depth;
-    public int GetSubmarineAim() => _submarine.Aim;
-    public int GetSubmarinePosition() => _submarine.Position;
-    public int GetFinalValue() => _submarine.Position * _submarine.Depth;
-    public void SendCommand(string command) => _submarine.ExecuteCommand(command);
+    public int GetSubmarineDepth() => this.submarine.Depth;
+    
+    public int GetSubmarineAim() => this.submarine.Aim;
+    
+    public int GetSubmarinePosition() => this.submarine.Position;
+    
+    public int GetFinalValue() => this.submarine.Position * this.submarine.Depth;
+    
+    public void SendCommand(string command) => this.submarine.ExecuteCommand(command);
 }

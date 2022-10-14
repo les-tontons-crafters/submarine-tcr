@@ -6,37 +6,22 @@ namespace SubmarineTcrKata.Acceptance.Steps;
 [Binding]
 public sealed class SubmarineSteps
 {
-    private readonly SubmarineDriver _driver;
+    private readonly SubmarineDriver driver;
 
-    public SubmarineSteps(SubmarineDriver driver) => _driver = driver;
+    public SubmarineSteps(SubmarineDriver driver) => this.driver = driver;
 
     [Then(@"submarine depth should be (.*)")]
-    public void VerifySubmarineDepth(int depth) => _driver.GetSubmarineDepth().Should().Be(depth);
+    public void VerifySubmarineDepth(int depth) => this.driver.GetSubmarineDepth().Should().Be(depth);
 
     [Then(@"submarine position should be (.*)")]
-    public void VerifySubmarinePosition(int position) => _driver.GetSubmarinePosition().Should().Be(position);
+    public void VerifySubmarinePosition(int position) => this.driver.GetSubmarinePosition().Should().Be(position);
 
     [Then(@"submarine aim should be (.*)")]
-    public void VerifySubmarineAim(int aim) => _driver.GetSubmarineAim().Should().Be(aim);
+    public void VerifySubmarineAim(int aim) => this.driver.GetSubmarineAim().Should().Be(aim);
 
     [Then(@"submarine final value should be (.*)")]
-    public void VerifySubmarineFinalValue(int finalValue) => _driver.GetFinalValue().Should().Be(finalValue);
+    public void VerifySubmarineFinalValue(int finalValue) => this.driver.GetFinalValue().Should().Be(finalValue);
 
-    [Given(@"submarine receives command (.*)")]
     [When(@"submarine receives command (.*)")]
-    public void SendCommand(string command) => _driver.SendCommand(command);
-
-    [When(@"submarine receives all commands from file (.*)")]
-    public void SendCommands(string filename)
-    {
-        var lines = File.ReadLines(string.Concat(Directory.GetCurrentDirectory(), filename));
-        lines.ToList().ForEach(_driver.SendCommand);
-    }
-
-    [Then(@"submarine final value should match value from file (.*)")]
-    public void VerifySubmarineFinalValueFromFile(string filename)
-    {
-        var finalValue = File.ReadLines(string.Concat(Directory.GetCurrentDirectory(), filename)).First();
-        _driver.GetFinalValue().Should().Be(int.Parse(finalValue));
-    }
+    public void SendCommand(string command) => this.driver.SendCommand(command);
 }
