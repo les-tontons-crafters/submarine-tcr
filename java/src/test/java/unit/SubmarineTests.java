@@ -17,7 +17,6 @@ class SubmarineTests {
     @Test
     void fakeTest() {
         assertThat(submarine)
-                .isNotNull()
-                .matches(s -> s.equals(42));
+                .isNotNull();
     }
 }
