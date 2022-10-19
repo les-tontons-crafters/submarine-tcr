@@ -13,7 +13,8 @@ public class Submarine : ISubmarine
             "down 1" => 1,
             "down 2" => 2,
             "up 1" => -1,
-            _ => -2
+            "up 2" => -2,
+            _ => 0
         };
     }
 
