@@ -31,7 +31,7 @@ public class Submarine : ISubmarine
     }
 
     public int Aim { get; private set; }
-    public int Position { get; set; }
+    public int Position { get; private set; }
 
     public int Depth { get; private set; }
 }
