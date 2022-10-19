@@ -29,14 +29,6 @@ public class SubmarineTest
 
         _submarine.Aim.Should().Be(value);
     }
-    
-    [Fact]
-    public void ShouldGoUpTwo()
-    {
-        _submarine.ExecuteCommand("up 2");
-
-        _submarine.Aim.Should().Be(-2);
-    }
 
     [Theory]
     [InlineData(1)]
