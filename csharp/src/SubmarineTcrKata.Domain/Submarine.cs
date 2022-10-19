@@ -8,6 +8,19 @@ public class Submarine : ISubmarine
 
     public void ExecuteCommand(string command)
     {
+        var arguments = command.Split(" ");
+        var commandName = arguments[0];
+        var value = int.Parse(arguments[1]);
+
+        switch (commandName)
+        {
+            case "down":
+                Aim = value;
+                break;
+            case "up":
+                break;
+        }
+        
         if (command == "forward 5")
         {
             Position = 5;
