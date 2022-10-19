@@ -8,14 +8,7 @@ public class Submarine : ISubmarine
 
     public void ExecuteCommand(string command)
     {
-        if (command == "down 1")
-        {
-            Aim = 1;
-        }
-        else
-        {
-            Aim = 2;
-        }
+        Aim = command == "down 1" ? 1 : 2;
     }
 
     public int Aim { get; private set; } 
