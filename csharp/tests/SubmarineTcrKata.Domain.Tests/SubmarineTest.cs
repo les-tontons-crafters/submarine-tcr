@@ -44,6 +44,6 @@ public class SubmarineTest
     {
         _submarine.ExecuteCommand("up " + value);
 
-        _submarine.Aim.Should().Be(-1);
+        _submarine.Aim.Should().Be(value * -1);
     }
 }
