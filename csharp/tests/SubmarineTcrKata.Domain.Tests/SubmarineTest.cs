@@ -20,12 +20,13 @@ public class SubmarineTest
         _submarine.Depth.Should().Be(0);
     }
 
-    [Fact]
-    public void ShouldGoDown()
+    [Theory]
+    [InlineData(1)]
+    public void ShouldGoDown(int value)
     {
-        _submarine.ExecuteCommand("down 1");
+        _submarine.ExecuteCommand("down " + value);
 
-        _submarine.Aim.Should().Be(1);
+        _submarine.Aim.Should().Be(value);
     }
     
     [Fact]
