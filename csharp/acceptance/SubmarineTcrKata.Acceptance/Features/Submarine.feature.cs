@@ -83,11 +83,11 @@ namespace SubmarineTcrKata.Acceptance.Features
         [Xunit.SkippableFactAttribute(DisplayName="Submarine default position")]
         [Xunit.TraitAttribute("FeatureTitle", "Submarine")]
         [Xunit.TraitAttribute("Description", "Submarine default position")]
-        [Xunit.TraitAttribute("Category", "InProgress")]
+        [Xunit.TraitAttribute("Category", "TOTO")]
         public virtual void SubmarineDefaultPosition()
         {
             string[] tagsOfScenario = new string[] {
-                    "InProgress"};
+                    "TOTO"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Submarine default position", null, tagsOfScenario, argumentsOfScenario, this._featureTags);
 #line 5
