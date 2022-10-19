@@ -22,19 +22,12 @@ public class SubmarineTest
 
     [Theory]
     [InlineData(1)]
+    [InlineData(2)]
     public void ShouldGoDown(int value)
     {
         _submarine.ExecuteCommand("down " + value);
 
         _submarine.Aim.Should().Be(value);
-    }
-    
-    [Fact]
-    public void ShouldGoDownTwo()
-    {
-        _submarine.ExecuteCommand("down 2");
-
-        _submarine.Aim.Should().Be(2);
     }
     
     [Fact]
