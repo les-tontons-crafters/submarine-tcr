@@ -7,10 +7,12 @@ public class SubmarineTest
 {
     private readonly Submarine _submarine;
 
-    public SubmarineTest() => _submarine = new Submarine();
+    public SubmarineTest()
+        => _submarine = new Submarine();
 
     [Fact]
-    public void SomeFakeTest() => _submarine.Should().NotBeNull();
+    public void SomeFakeTest()
+        => _submarine.Should().NotBeNull();
 
     [Fact]
     public void ShouldHaveInitialPosition()
@@ -48,5 +50,19 @@ public class SubmarineTest
 
         _submarine.Position.Should().Be(5);
         _submarine.Depth.Should().Be(0);
+    }
+
+    [Fact]
+    public void ShouldGoForward8()
+    {
+        // Arrange
+        _submarine.ExecuteCommand("down 5");
+        
+        // Act
+        _submarine.ExecuteCommand("forward 8");
+
+        // Assert
+        _submarine.Position.Should().Be(8);
+        _submarine.Depth.Should().Be(5 * 8);
     }
 }

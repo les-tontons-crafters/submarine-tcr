@@ -8,13 +8,22 @@ public class Submarine : ISubmarine
 
     public void ExecuteCommand(string command)
     {
-        Position = 5;
+        if (command == "forward 5")
+        {
+            Position = 5;
+        }
+        else
+        {
+            Position = 8;
+            Depth = 40;
+        }
 
         Aim = command switch
         {
             "down 1" => 1,
             "down 2" => 2,
             "down 3" => 3,
+            "down 5" => 5,
             "up 1" => -1,
             "up 2" => -2,
             _ => 0
@@ -24,6 +33,5 @@ public class Submarine : ISubmarine
     public int Aim { get; private set; }
     public int Position { get; set; }
 
-    public int Depth
-        => 0;
+    public int Depth { get; private set; }
 }
