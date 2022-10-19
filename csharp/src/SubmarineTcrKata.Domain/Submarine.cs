@@ -18,16 +18,16 @@ public class Submarine : ISubmarine
             "up" => -value,
             _ => Aim
         };
-
-        if (command == "forward 5")
+        Position = commandName switch
         {
-            Position = 5;
-        }
-        else
+            "forward" => value,
+            _ => Position
+        };
+        Depth = commandName switch
         {
-            Position = 8;
-            Depth = 40;
-        }
+            "forward" => Position * Aim,
+            _ => Depth
+        };
     }
 
     public int Aim { get; private set; }
