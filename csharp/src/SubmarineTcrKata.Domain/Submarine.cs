@@ -18,7 +18,7 @@ public class Submarine : ISubmarine
         }
     }
 
-    public int Aim { get; set; } 
+    public int Aim { get; private set; } 
     public int Position => 0;
     public int Depth => 0;
 }
