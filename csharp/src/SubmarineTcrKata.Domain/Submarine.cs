@@ -8,6 +8,8 @@ public class Submarine : ISubmarine
 
     public void ExecuteCommand(string command)
     {
+        Position = 5;
+
         Aim = command switch
         {
             "down 1" => 1,
@@ -19,7 +21,9 @@ public class Submarine : ISubmarine
         };
     }
 
-    public int Aim { get; private set; } 
-    public int Position => 0;
-    public int Depth => 0;
+    public int Aim { get; private set; }
+    public int Position { get; set; }
+
+    public int Depth
+        => 0;
 }
