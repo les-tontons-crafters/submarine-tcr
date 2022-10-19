@@ -18,6 +18,7 @@ public class Submarine : ISubmarine
                 Aim = value;
                 break;
             case "up":
+                Aim = -value;
                 break;
         }
         
@@ -30,17 +31,6 @@ public class Submarine : ISubmarine
             Position = 8;
             Depth = 40;
         }
-
-        Aim = command switch
-        {
-            "down 1" => 1,
-            "down 2" => 2,
-            "down 3" => 3,
-            "down 5" => 5,
-            "up 1" => -1,
-            "up 2" => -2,
-            _ => 0
-        };
     }
 
     public int Aim { get; private set; }
