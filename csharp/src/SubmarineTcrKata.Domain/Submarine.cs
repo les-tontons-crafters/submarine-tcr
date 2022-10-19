@@ -8,7 +8,12 @@ public class Submarine : ISubmarine
 
     public void ExecuteCommand(string command)
     {
-        Aim = command == "down 1" ? 1 : command == "down 2" ? 2 : -2;
+        Aim = command switch
+        {
+            "down 1" => 1,
+            "down 2" => 2,
+            _ => -2
+        };
     }
 
     public int Aim { get; private set; } 
