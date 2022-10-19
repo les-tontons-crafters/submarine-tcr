@@ -12,16 +12,13 @@ public class Submarine : ISubmarine
         var commandName = arguments[0];
         var value = int.Parse(arguments[1]);
 
-        switch (commandName)
+        Aim = commandName switch
         {
-            case "down":
-                Aim = value;
-                break;
-            case "up":
-                Aim = -value;
-                break;
-        }
-        
+            "down" => value,
+            "up" => -value,
+            _ => Aim
+        };
+
         if (command == "forward 5")
         {
             Position = 5;
