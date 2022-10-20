@@ -78,6 +78,7 @@ The command must follow the following format, and be executed from the root dire
 .\tcr\Windows\tcr.exe -b .\java\ -w .\java\ -l java -t maven
 
 // For C#
+./tcr/MacOs/tcr -b csharp/ -w csharp/ -l csharp
 .\tcr\Windows\tcr.exe -b .\csharp\ -w .\csharp\ -l csharp
 ```
 
