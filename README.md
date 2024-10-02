@@ -84,6 +84,10 @@ The command must follow the following format, and be executed from the root dire
 // For typescript
 ./tcr/MacOs/tcr -b typescript -w typescript -t npm
 .\tcr\Windows\tcr.exe -b typescript -w typescript -t npm
+
+// For python
+./tcr/MacOs/tcr -b python -w python -t pytest
+.\tcr\Windows\tcr.exe -b python -w python -t pytest
 ```
 
 From there, the tool will provide a set of options:
@@ -101,6 +105,11 @@ It's pretty simple:
 - Otherwise, pick the **Navigator role** or press **N**. You will constantly pull commits and have an up-to-date codebase.
 
 Please, make sure to follow your rotation and have only one driver at a time.
+
+You can also work on a single computer using TCR solo mode:
+```shell
+.\tcr\\**OS**\tcr.exe solo -b .\\**language**\ -w .\\**language**\ -t **toolchain**
+```
 
 Have fun!
 
