@@ -715,5 +715,8 @@ MigrationBackup/
 # python virtual environment
 .venv
 
+# pytest
+.pytest_cache/
+
 **/.test_results/*
 !**/.test_results/.gitkeep
