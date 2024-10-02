@@ -711,3 +711,9 @@ MigrationBackup/
 # End of https://www.toptal.com/developers/gitignore/api/java,maven,eclipse,intellij,visualstudio,gradle,cmake,visualstudiocode,code-java,clion,diff
 
 .DS_Store
+
+# python virtual environment
+.venv
+
+**/.test_results/*
+!**/.test_results/.gitkeep
