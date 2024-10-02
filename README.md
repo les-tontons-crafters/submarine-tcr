@@ -84,6 +84,10 @@ The command must follow the following format, and be executed from the root dire
 // For typescript
 ./tcr/MacOs/tcr -b typescript -w typescript -t npm
 .\tcr\Windows\tcr.exe -b typescript -w typescript -t npm
+
+// For python
+./tcr/MacOs/tcr -b python -w python -t pytest
+.\tcr\Windows\tcr.exe -b python -w python -t pytest
 ```
 
 From there, the tool will provide a set of options:
