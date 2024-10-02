@@ -106,6 +106,11 @@ It's pretty simple:
 
 Please, make sure to follow your rotation and have only one driver at a time.
 
+You can also work on a single computer using TCR solo mode:
+```shell
+.\tcr\\**OS**\tcr.exe solo -b .\\**language**\ -w .\\**language**\ -t **toolchain**
+```
+
 Have fun!
 
 ### Rules
