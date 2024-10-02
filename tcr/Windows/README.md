@@ -1,20 +1,21 @@
 [![Go](https://github.com/murex/tcr/actions/workflows/go.yml/badge.svg)](https://github.com/murex/tcr/actions/workflows/go.yml)
 [![Go lint](https://github.com/murex/tcr/actions/workflows/golangci_lint.yml/badge.svg)](https://github.com/murex/tcr/actions/workflows/golangci_lint.yml)
+[![NPM build and test](https://github.com/murex/TCR/actions/workflows/npm.yml/badge.svg)](https://github.com/murex/TCR/actions/workflows/npm.yml)
 [![sonarcloud](https://sonarcloud.io/api/project_badges/measure?project=murex_TCR&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=murex_TCR)
 [![Coveralls](https://coveralls.io/repos/github/murex/TCR/badge.svg?branch=main)](https://coveralls.io/github/murex/TCR?branch=main)
-[![goreleaser](https://github.com/murex/tcr/actions/workflows/goreleaser.yml/badge.svg)](https://github.com/murex/tcr/actions/workflows/goreleaser.yml)
+[![goreleaser](https://github.com/murex/tcr/actions/workflows/go_releaser.yml/badge.svg)](https://github.com/murex/tcr/actions/workflows/go_releaser.yml)
 [![Add contributors](https://github.com/murex/tcr/actions/workflows/add_contributors.yml/badge.svg)](https://github.com/murex/tcr/actions/workflows/add_contributors.yml)
 
-# TCR - Test && (Commit || Revert) application
+# TCR - Test && Commit || Revert
 
 _A Go implementation of TCR, for practicing baby-steps development, and much more!_
 
 ## What is this?
 
-TCR is a programming workflow, standing for **Test && (Commit || Revert)**.
+TCR is a programming workflow, standing for **Test && Commit || Revert**.
 
-Kent Beck and Oddmund Strømme came up with this concept
-in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
+Kent Beck, Oddmund Strømme, Lars Barlindhaug and Ole Johannessen came up with this concept
+as described in [this post](https://medium.com/@kentbeck_7670/test-commit-revert-870bbd756864).
 
 Since then several people experimented with this idea.
 
@@ -46,9 +47,10 @@ If you are a technical coach, you can advise participants to your coaching sessi
 
 ### Prerequisites
 
-1. Have [git](https://git-scm.com/) installed on your machine
-2. Have a clone of the git repository containing the code you intend to work on
-3. Supported platforms: macOS, Linux and Windows. Refer to [TCR releases page](https://github.com/murex/TCR/releases)
+1. Have [git](https://git-scm.com/) or [Perforce client](https://www.perforce.com/downloads/helix-visual-client-p4v)
+   installed on your machine
+2. Have a clone of the git repository or a client view of the Perforce depot containing the code you intend to work on
+3. TCR can run on macOS, Linux and Windows. Refer to [TCR releases page](https://github.com/murex/TCR/releases)
    for a complete list of supported platforms/architectures
 
 ### Languages and toolchains
@@ -72,12 +74,31 @@ provided as built-in.
 
 #### Built-in languages and toolchains
 
-| Language | Toolchains                                         | Default        |
-|----------|----------------------------------------------------|----------------|
-| java     | gradle, gradle-wrapper, maven, maven-wrapper, make | gradle-wrapper |
-| cpp      | cmake, make                                        | cmake          |
-| go       | go-tools, gotestsum, make                          | go-tools       |
-| csharp   | dotnet, make                                       | dotnet         |
+| Language   | Default Toolchain | Compatible Toolchains                                |
+|------------|-------------------|------------------------------------------------------|
+| cpp        | cmake             | cmake bazel make                                     |
+| csharp     | dotnet            | dotnet bazel make                                    |
+| elixir     | mix               | mix                                                  |
+| go         | go-tools          | go-tools gotestsum bazel make                        |
+| haskell    | stack             | stack                                                |
+| java       | gradle-wrapper    | gradle gradle-wrapper maven maven-wrapper bazel make |
+| javascript | yarn              | yarn bazel make                                      |
+| kotlin     | gradle-wrapper    | gradle gradle-wrapper maven maven-wrapper bazel make |
+| php        | phpunit           | phpunit                                              |
+| python     | pytest            | pytest bazel make                                    |
+| rust       | cargo             | cargo nextest                                        |
+| scala      | sbt               | sbt                                                  |
+| typescript | yarn              | yarn bazel make                                      |
+
+### TCR Variants
+
+TCR tool can run several variants of the TCR workflow, inspired by [this blog post](https://medium.com/@tdeniffel/tcr-variants-test-commit-revert-bf6bd84b17d3)
+by Thomas Deniffel.
+
+Some are great as pedagogic tools, some are better for day-to-day use.
+
+The default variant is "The Relaxed". You can refer to [this page](./variants-doc/tcr_variants.md)
+for further details on available variants.
 
 ### Base directory
 
@@ -110,22 +131,31 @@ language/toolchain, TCR needs to know where it should save them. This is the pur
 <details>
   <summary>Configuration directory layout</summary>
 
-- `configuration directory`/
-    - `.tcr`/
-        - `config.yml` - contains all TCR configuration settings
-        - `language`/ - subdirectory containing all language configurations
-            - `java.yml` - configuration for Java language
-            - `cpp.yml` - configuration for C++ language
-            - etc.
-        - `toolchain`/ - subdirectory containing all toolchain configurations
-            - `gradle.yml` - configuration for Gradle toolchain
-            - `gradle-wrapper.yml` - configuration for Gradle wrapper toolchain
-            - `cmake.yml` - configuration for CMake toolchain
-            - etc.
+  ```text
+  <configuration directory>/
+  └── .tcr/
+      ├── config.yml             - contains all TCR configuration settings
+      ├── language/              - subdirectory containing all language configurations
+      │   ├── cpp.yml            - configuration for C++ language
+      │   ├── java.yml           - configuration for java language
+      │   └── etc.
+      └── toolchain/             - subdirectory containing all toolchain configurations
+          ├── cmake.yml          - configuration for cmake toolchain
+          ├── gradle.yml         - configuration for gradle toolchain
+          ├── gradle-wrapper.yml - configuration for gradle wrapper toolchain
+          └── etc.
+  ```
 
 </details>
 
+### Examples
+
+Refer to the [examples](examples/README.md) directory on how to set up and run
+TCR for various language/toolchain combinations.
+
 ### Running TCR
+
+#### Operating Systems
 
 <details>
   <summary>On MacOS</summary>
@@ -135,7 +165,7 @@ language/toolchain, TCR needs to know where it should save them. This is the pur
 2. Extract TCR executable (replace with the appropriate version and architecture)
 
     ```shell
-    tar zxf tcr_0.12.0_Darwin_x86_64.tar.gz
+    tar zxf tcr_1.3.0_Darwin_x86_64.tar.gz
     ```
 
 3. Launch TCR
@@ -154,7 +184,7 @@ language/toolchain, TCR needs to know where it should save them. This is the pur
 2. Extract TCR executable (replace with the appropriate version and architecture)
 
     ```shell
-    tar zxf tcr_0.12.0_Linux_x86_64.tar.gz
+    tar zxf tcr_1.3.0_Linux_x86_64.tar.gz
     ```
 
 3. Launch TCR
@@ -173,7 +203,7 @@ language/toolchain, TCR needs to know where it should save them. This is the pur
 2. Extract TCR executable (replace with the appropriate version and architecture)
 
     ```shell
-    tar zxf tcr_0.12.0_Windows_x86_64.tar.gz
+    tar zxf tcr_1.3.0_Windows_x86_64.tar.gz
     ```
 
 3. Launch TCR
@@ -184,9 +214,14 @@ language/toolchain, TCR needs to know where it should save them. This is the pur
 
 </details>
 
-> ***Note***
->
-> <details><summary>TCR and git commits signing</summary>
+#### Version Control Systems
+
+<details>
+  <summary>Git</summary>
+
+TCR uses git by default. There is no need to specify anything particular to use git.
+
+> ***Note: TCR and git commits signing***
 >
 > Some users prefer to set up their git configuration so that each of their commits is
 > signed and verified through a GPG passphrase as described
@@ -199,8 +234,29 @@ language/toolchain, TCR needs to know where it should save them. This is the pur
 >
 > If signing every commit is important to you, you can still do it when you're done
 > working with TCR, when reworking git history and squashing TCR commits into meaningful ones.
+
+</details>
+
+<details>
+  <summary>Perforce</summary>
+
+Before running TCR with Perforce, make sure that the P4 Client is properly configured.
+
+To use TCR with Perforce, you'll need to add the `--vcs=p4` to the command line (you can also set this up in
+the `.tcr/config.yml`, see the [Configuration Directory](#configuration-directory) section below).
+
+> ***Note: Perforce limitations***
 >
-> </details>
+> At the moment, TCR over Perforce is still in the experimentation phase. It does not yet support all the options
+> available with git.
+> Here are the main limitations:
+>
+> - Option `--commit-failures` or `-f` is not supported
+> - Option `--auto-push` or `-p` has no meaning with Perforce and is ignored
+> - Sub-command `log` is not supported
+> - Sub-command `stats` is not supported
+
+</details>
 
 ### Using TCR configuration
 
@@ -347,211 +403,31 @@ Suppose you want to run TCR with Javascript language and yarn toolchain. Here is
 
 </details>
 
+### Using TCR's embedded web interface `experimental`
+
+Since version `1.0.0`, TCR comes with an embedded web interface that can be used
+to monitor the TCR cycle, control driver and navigator roles,
+and show the countdown timer when the driver mode active.
+
+To use it, start TCR using the `web` subcommand:
+
+```shell
+./tcr web
+```
+
+Once TCR is running, you can open the web interface in your browser
+by typing the `O` shortcut in the terminal.
+
+TCR runs its internal web server on port `8483` by default.
+You can change the port through using the `-P` (or `--port-number`) command line option.
+
 ### Command line help (all platforms)
 
 Refer to [here](./doc/tcr.md) for TCR command line help and additional options.
 
-## Building TCR on your machine
+## Building, testing and releasing TCR
 
-This section provides information related to TCR tool development environment setup for those who would like to build
-TCR tool locally.
-
-<details><summary>Expand for details</summary>
-
-### Clone TCR repository - `Required`
-
-```shell
-git clone https://github.com/murex/TCR.git
-cd TCR
-```
-
-### Install Go SDK - `Required`
-
-TCR is written in Go. This implies having Go compiler and tools installed on your machine.
-
-Simply follow the instructions provided [here](https://go.dev/). Make sure to install **Go version 1.18** or higher.
-
-### Install additional Go tools and utility packages
-
-#### Go IDE - `Optional`
-
-You can check this [link](https://www.tabnine.com/blog/top-7-golang-ides-for-go-developers/)
-for a list of recommended IDEs supporting Go language.
-
-#### Cobra library and tools - `Optional`
-
-TCR Go command line options and parameters are managed using [Cobra](https://github.com/spf13/cobra).
-
-The Cobra library download is already dealt with through Go Module dependencies, which means that in most situations you
-will not need to worry about installing it.
-
-In case you need to add or modify subcommands, options or parameters, you may want to use the Cobra Generator. In this
-situation you can refer to
-[Cobra Generator documentation](https://github.com/spf13/cobra/blob/master/user_guide.md#using-the-cobra-generator)
-
-#### GoReleaser utility - `Optional`
-
-New versions of TCR Go are released through [GoReleaser](https://goreleaser.com/).
-
-You should not need it as long as you don't plan to release a new TCR Go version.
-
-If you do, you can refer to [GoReleaser Installation Instructions](https://goreleaser.com/install/)
-for installing it locally on your machine.
-
-In most cases you will not even have to install it locally as TCR-Go new releases are built through
-a [GoReleaser GitHub action](.github/workflows/goreleaser.yml).
-
-#### golangci-lint package - `Optional`
-
-We use the Go Linter aggregator [golangci-lint](https://golangci-lint.run/) to perform various static checks on TCR Go
-code.
-
-A [dedicated GitHub action](.github/workflows/goreleaser.yml) triggers execution of golangci-lint every time a new
-TCR-Go version is being released.
-
-Although not mandatory, we advise you to install it locally on your machine to check that your changes comply with
-golangci-lint rules. Refer to [golangci-lint installation instructions](https://golangci-lint.run/usage/install/)
-for installation.
-
-Once golangci-lint is installed, you can run it from the root directory:
-
-```shell
-make lint
-```
-
-Both local run and GitHub Action use [this configuration file](.golangci.yml)
-
-#### gotestsum utility - `Optional`
-
-We use [gotestsum](https://github.com/gotestyourself/gotestsum) for running tests
-with the possibility to generate a xunit-compatible test report.
-
-Although not mandatory, we advise you to install it locally on your machine as it greatly improves
-readability of test results.
-Refer to [gotestsum's Install section](https://github.com/gotestyourself/gotestsum#install)
-for installation.
-
-Once gotestsum is installed, you can run make's test target from the root directory:
-
-- For running all tests:
-
-  ```shell
-  make test
-  ```
-- For running short tests only:
-
-  ```shell
-  make test-short
-  ```
-
-#### Fyne toolkit - `Optional`
-
-The GUI version of TCR-Go is built on top of [Fyne toolkit](https://fyne.io/) for all GUI-related stuff.
-
-Refer to [Fyne Develop](https://developer.fyne.io/) for installation and usage instructions.
-
-You will not need it as long as you're working on the TCR Command Line implementation only.
-
-> ***Note about TCR GUI version***
->
-> So far we are only releasing the command line version of TCR.
-> We have not reached yet the stage where we could fully automate through a goreleaser GitHub Action
-> the cross-compilation and link of TCR with Fyne and its dependencies.
-> In the meantime if you wish to give TCR GUI a try, you still can build and run it locally on your machine
-> (refer to `Build TCR executable` section below)
-
-### Build TCR executable
-
-To build TCR locally on your machine, simply type the following from the root directory:
-
-```shell
-make
-```
-
-This command generates by default both TCR CLI (in [tcr-cli](./tcr-cli) directory)
-and TCR GUI (in [tcr-gui](./tcr-gui) directory) executables, as well as the command help pages (in [doc](./doc)
-directory).
-
-<details><summary>To build TCR CLI only</summary>
-
-Either run the following command from the root directory:
-
-```shell
-make -C ./tcr-cli
-```
-
-Or run make from [tcr-cli](./tcr-cli) directory:
-
-```shell
-cd tcr-cli
-make
-```
-
-</details>
-
-<details><summary>To build TCR GUI only</summary>
-
-Either run the following command from the root directory:
-
-```shell
-make -C ./tcr-gui
-```
-
-Or run make from [tcr-gui](./tcr-gui) directory:
-
-```shell
-cd tcr-gui
-make
-```
-
-</details>
-
-<details><summary>To generate TCR command markdown documentation</summary>
-
-```shell
-make doc
-```
-
-</details>
-
-</details>
-
-## Releasing a new TCR version
-
-We use [GoReleaser](https://goreleaser.com/) for releasing new TCR versions.
-
-<details><summary>Expand for details</summary>
-
-### Versioning Rules
-
-TCR release versions comply with [Semantic Versioning rules](https://semver.org/).
-
-### Release Branch
-
-All TCR releases are published on GitHub's `main` branch.
-
-### Release Preparation
-
-- [ ] Cleanup Go module dependencies: `make tidy`
-- [ ] Run static checks and fix any non-conformity: `make lint`
-- [ ] Verify that the build works: `make build`
-- [ ] Verify that all tests pass: `make test`
-- [ ] Commit all changes on the `main` branch
-- [ ] Push the changes to GitHub and [wait until all GitHub Actions are green](https://github.com/murex/TCR/actions)
-- [ ] Create the release tag: `git tag -a vX.Y.Z`
-- [ ] Verify that everything is ready for GoReleaser: `make snapshot`
-
-### Releasing
-
-The creation of the new release is triggered by pushing the newly created release tag to GitHub repository
-
-- [ ] Push the release tag: `git push origin vX.Y.Z`
-- [ ] [Wait until all GitHub Actions are green](https://github.com/murex/TCR/actions)
-- [ ] Open [TCR Release page](https://github.com/murex/TCR/releases) and verify that the new release is there
-- [ ] Edit the release notes document, and insert a `Summary` section at the top, listing the main changes included in
-  this release. You may take a look at previous release notes if unsure what should go in there.
-
-</details>
+Refer to [TCR development documentation](./dev-doc/README.md) for details.
 
 ## How to Contribute?
 
@@ -582,6 +458,27 @@ which accompanies this distribution, and is available at the
             <img src=https://avatars.githubusercontent.com/u/11088496?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Ahmad Atwi/>
             <br />
             <sub style="font-size:14px"><b>Ahmad Atwi</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/philou>
+            <img src=https://avatars.githubusercontent.com/u/23983?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Philippe Bourgau/>
+            <br />
+            <sub style="font-size:14px"><b>Philippe Bourgau</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/YifangDONG>
+            <img src=https://avatars.githubusercontent.com/u/15253963?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=Yifang DONG/>
+            <br />
+            <sub style="font-size:14px"><b>Yifang DONG</b></sub>
+        </a>
+    </td>
+    <td align="center" style="word-wrap: break-word; width: 150.0; height: 150.0">
+        <a href=https://github.com/rwilsonmurex>
+            <img src=https://avatars.githubusercontent.com/u/161576431?v=4 width="100;"  style="border-radius:50%;align-items:center;justify-content:center;overflow:hidden;padding-top:10px" alt=rwilsonmurex/>
+            <br />
+            <sub style="font-size:14px"><b>rwilsonmurex</b></sub>
         </a>
     </td>
 </tr>

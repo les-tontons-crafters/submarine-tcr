@@ -80,6 +80,10 @@ The command must follow the following format, and be executed from the root dire
 // For C#
 ./tcr/MacOs/tcr -b csharp/ -w csharp/ -l csharp
 .\tcr\Windows\tcr.exe -b .\csharp\ -w .\csharp\ -l csharp
+
+// For typescript
+./tcr/MacOs/tcr -b typescript -w typescript -t npm
+.\tcr\Windows\tcr.exe -b typescript -w typescript -t npm
 ```
 
 From there, the tool will provide a set of options:

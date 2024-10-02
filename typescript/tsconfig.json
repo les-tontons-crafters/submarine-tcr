@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "module": "commonjs",
+    "target": "es2019",
+    "esModuleInterop": true,
+    "allowJs": false,
+    "baseUrl": ".",
+    "paths": {
+      "@submarine-domain/*": ["./src/*"]
+    }
+  },
+  "files": [
+    "node_modules/jest-extended/types/index.d.ts",
+    "node_modules/jest-chain/types/index.d.ts"
+  ],
+  "include": ["src/**/*", "tests/**/*"]
+}
