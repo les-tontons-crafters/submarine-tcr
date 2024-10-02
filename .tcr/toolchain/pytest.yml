@@ -8,4 +8,8 @@ test:
     arch: ["386", amd64, arm64]
     command: pytest
     arguments: []
+  - os: [ darwin, linux, windows ]
+    arch: [ "386", amd64, arm64 ]
+    command: behave
+    arguments: [ ]
 test-result-dir: pytest

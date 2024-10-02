@@ -3,13 +3,13 @@ from src.submarine_interface import SubmarineInterface
 
 class Submarine(SubmarineInterface):
     def execute_command(self, command: str) -> None:
-        raise NotImplementedError("Not Implemented")
+        pass
 
     def aim(self) -> int:
-        raise NotImplementedError("Not Implemented")
+        return 0
 
     def position(self) -> int:
-        raise NotImplementedError("Not Implemented")
+        return 0
 
     def depth(self) -> int:
-        raise NotImplementedError("Not Implemented")
+        return 0
