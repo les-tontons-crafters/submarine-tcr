@@ -8,3 +8,7 @@ config:
     tcr:
         language: ""
         toolchain: ""
+        trace: none
+        variant: relaxed
+    vcs:
+        name: git
