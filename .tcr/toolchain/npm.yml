@@ -8,4 +8,4 @@ test:
     arch: ["386", amd64, arm64]
     command: npm
     arguments: [test]
-test-result-dir: test_results
+test-result-dir: .test_results
