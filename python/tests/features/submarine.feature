@@ -4,20 +4,20 @@ Verifying the submarine controls are correct
     Background: we need a submarine
         Given a submarine
 
-    @wip
+    @skip
     Scenario: Submarine default position
         Then submarine depth should be 0
         And submarine position should be 0
         And submarine aim should be 0
 
-    @wip
+    @skip
     Scenario: Step 1
         When submarine receives command forward 5
         Then submarine depth should be 0
         And submarine position should be 5
         And submarine aim should be 0
 
-    @wip
+    @skip
     Scenario: Step 2
         When submarine receives command forward 5
         And submarine receives command down 5
@@ -25,7 +25,7 @@ Verifying the submarine controls are correct
         And submarine position should be 5
         And submarine aim should be 5
 
-    @wip
+    @skip
     Scenario: Step 3
         When submarine receives command forward 5
         And submarine receives command down 5
@@ -34,7 +34,7 @@ Verifying the submarine controls are correct
         And submarine position should be 13
         And submarine aim should be 5
 
-    @wip
+    @skip
     Scenario: Step 4
         When submarine receives command forward 5
         And submarine receives command down 5
@@ -44,7 +44,7 @@ Verifying the submarine controls are correct
         And submarine position should be 13
         And submarine aim should be 2
 
-    @wip
+    @skip
     Scenario: Step 5
         When submarine receives command forward 5
         And submarine receives command down 5
@@ -55,7 +55,7 @@ Verifying the submarine controls are correct
         And submarine position should be 13
         And submarine aim should be 10
 
-    @wip
+    @skip
     Scenario: Step 6
         When submarine receives command forward 5
         And submarine receives command down 5
@@ -68,7 +68,7 @@ Verifying the submarine controls are correct
         And submarine aim should be 10
         And submarine final value should be 900
 
-    @wip
+    @skip
     Scenario: Full features
         When submarine receives command forward 1
         And submarine receives command forward 8
