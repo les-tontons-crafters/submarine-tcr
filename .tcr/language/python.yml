@@ -6,4 +6,4 @@ source-files:
   patterns: ['(?i)^.*\.py$']
 test-files:
   directories: [tests]
-  patterns: ['(?i)^.*_(test|should)\.py$']
+  patterns: ['(?i)^.*_test\.py$']
